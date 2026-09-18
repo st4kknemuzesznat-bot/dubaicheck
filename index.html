@@ -72,7 +72,7 @@ scene.addEventListener('pointermove',e=>{
  ry+=(e.clientX-lastX)*.45;rx-=(e.clientY-lastY)*.45;
  rx=Math.max(-75,Math.min(75,rx));lastX=e.clientX;lastY=e.clientY;render();
 });
-const stop=()=>{dragging=false;scene.classList.remove('dragging');scene.releasePointerCapture?.(event?.pointerId)};
+const stop=e=>{dragging=false;scene.classList.remove('dragging');if(e?.pointerId!=null)scene.releasePointerCapture?.(e.pointerId)};
 scene.addEventListener('pointerup',stop);scene.addEventListener('pointercancel',stop);scene.addEventListener('pointerleave',()=>{});
 </script>
 </body></html>
