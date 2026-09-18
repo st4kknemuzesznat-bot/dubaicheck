@@ -33,9 +33,6 @@ button{font:inherit;color:inherit}
 .orbit:before,.orbit:after{content:"";position:absolute;inset:14%;border:1px dashed rgba(237,43,121,.25);border-radius:50%}.orbit:after{inset:31%;border-style:solid}
 .entity{position:absolute;left:50%;top:50%;width:66%;height:66%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:entity 8s linear infinite}.entity img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(237,43,121,.10))}
 .entity:before,.entity:after{content:"";position:absolute;inset:-8%;border:1px solid rgba(237,43,121,.22);border-radius:50%;pointer-events:none}.entity:before{transform:rotateX(65deg)}.entity:after{transform:rotateY(65deg)}
-.hotspot{position:absolute;z-index:8;width:13px;height:13px;border:1px solid var(--pink);border-radius:50%;background:var(--bg);padding:0;cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(244,243,238,.65);transition:transform .2s,background .2s}.hotspot:before{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--pink)}.hotspot:hover,.hotspot.active{transform:translate(-50%,-50%) scale(1.35)}.hotspot.active{background:var(--pink)}.hotspot.active:before{background:var(--bg)}
-.hs1{left:49%;top:35%}.hs2{left:69%;top:49%}.hs3{left:57%;top:69%}.hs4{left:37%;top:64%}.hs5{left:30%;top:47%}.hs6{left:50%;top:51%}
-.ritual-info{position:absolute;z-index:12;left:50%;top:50%;width:min(310px,calc(100% - 40px));padding:17px 18px 16px;border:1px solid #888;background:rgba(244,243,238,.96);box-shadow:0 8px 30px rgba(0,0,0,.08);opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.96);transition:opacity .2s,transform .2s}.ritual-info.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}.ritual-info .info-label{font-size:7px;letter-spacing:.14em;color:#777;margin-bottom:8px}.ritual-info h2{font-family:Oswald,sans-serif;font-size:27px;line-height:.9;margin:0 0 10px;letter-spacing:-.03em}.ritual-info p{font-size:9px;line-height:1.55;margin:0}.info-close{position:absolute;right:10px;top:8px;border:0;background:none;font-size:13px;cursor:pointer;padding:3px}
 @keyframes o1{to{transform:rotateX(70deg) rotateZ(360deg)}}@keyframes o2{to{transform:rotateY(70deg) rotateZ(-360deg)}}@keyframes o3{to{transform:rotateX(60deg) rotateY(25deg) rotateZ(360deg)}}@keyframes entity{to{transform:translate(-50%,-50%) rotateY(360deg) rotateX(8deg)}}
 .scanline{position:absolute;left:0;right:0;height:1px;top:0;background:rgba(237,43,121,.18);pointer-events:none;animation:scan 6s ease-in-out infinite}@keyframes scan{0%,100%{transform:translateY(0);opacity:0}10%{opacity:.7}90%{opacity:.7}50%{transform:translateY(100vh)}}
 .matrix-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.13;mix-blend-mode:multiply}.matrix-column{position:absolute;top:-35%;font-family:"IBM Plex Mono",monospace;font-size:10px;line-height:1.8;letter-spacing:.08em;color:var(--pink);white-space:pre;writing-mode:vertical-rl;animation:matrixFall linear infinite}.matrix-column span{display:block}.matrix-column:nth-child(3n){opacity:.55}.matrix-column:nth-child(4n){color:#111;opacity:.12}.matrix-column:nth-child(5n){font-size:7px;letter-spacing:.14em}@keyframes matrixFall{from{transform:translateY(-5%)}to{transform:translateY(145%)}}
@@ -55,7 +52,7 @@ button{font:inherit;color:inherit}
 <div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
 <div class="content">
 <section id="ritual" class="panel active"><div class="ritual-title title">RITUAL 001</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="matrix-rain" aria-hidden="true"></div><div class="scanline" aria-hidden="true"></div>
-<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="entity"><img src="ritual-001-final.svg" alt="Ritual 001"></div><button class="hotspot hs1" data-info="origin" aria-label="Origin"></button><button class="hotspot hs2" data-info="vision" aria-label="Vision"></button><button class="hotspot hs3" data-info="signal" aria-label="Signal"></button><button class="hotspot hs4" data-info="memory" aria-label="Memory"></button><button class="hotspot hs5" data-info="threshold" aria-label="Threshold"></button><button class="hotspot hs6" data-info="core" aria-label="Core"></button></div><div class="ritual-info" id="ritualInfo"><button class="info-close" id="infoClose" aria-label="Close">×</button><div class="info-label" id="infoLabel">RITUAL 001 / ORIGIN</div><h2 id="infoTitle">THE FIRST SIGNAL</h2><p id="infoText">The ritual begins when a digital symbol becomes aware of being observed. The entity is not a creature, but a visual trace of that first moment of recognition.</p></div><div class="telemetry">ROTATION <span class="value" id="rotValue">000° / 000°</span><br>VECTOR <span class="value" id="vecValue">01.00 / 01.00</span><br>STATE <span class="value" id="stateValue">ACTIVE</span></div><div class="coords"><span id="coordA">50.0755°N</span><br><span id="coordB">15.7801°E</span><br><span id="coordC">/ ∞</span></div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ARCHIVE / 001</span><span>/ ∞</span></div></section>
+<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="entity"><img src="ritual-001-final.svg" alt="Ritual 001"></div></div><h2 id="infoTitle">THE FIRST SIGNAL</h2><p id="infoText">The ritual begins when a digital symbol becomes aware of being observed. The entity is not a creature, but a visual trace of that first moment of recognition.</p></div><div class="telemetry">ROTATION <span class="value" id="rotValue">000° / 000°</span><br>VECTOR <span class="value" id="vecValue">01.00 / 01.00</span><br>STATE <span class="value" id="stateValue">ACTIVE</span></div><div class="coords"><span id="coordA">50.0755°N</span><br><span id="coordB">15.7801°E</span><br><span id="coordC">/ ∞</span></div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ARCHIVE / 001</span><span>/ ∞</span></div></section>
 <section id="about" class="panel"><div class="about-copy"><h1 class="title">DIGITAL<br>RITUALS<br>PHYSICAL<br>OBJECTS</h1><p>RGZGOD.EXE IS A PERSONAL ART PROJECT EXPLORING THE SPACE BETWEEN DIGITAL AND PHYSICAL REALMS.</p><p>SYMBOLS, ENTITIES AND FRAGMENTS BORN IN A VIRTUAL ENVIRONMENT, MATERIALIZED INTO REAL OBJECTS.</p><p>A CONTINUOUS EXPERIMENT.<br>A NEVER ENDING RITUAL.</p><p>ENTER THE VISION.</p></div><div class="about-side">ART<br>DESIGN<br>EXPERIMENT<br>COLLECT<br>REPEAT</div><div class="footer"><span>IDEAS<br>RITUALS<br>OBJECTS<br>ARCHIVE<br>CONTACT</span><span>SAME SIGNAL<br>DIFFERENT FORM.</span></div></section>
 <section id="shop" class="panel"><div class="shop-center"><div class="closed">CLOSED</div></div><div class="shop-note">SHOP<br>001<br><br>NOT AVAILABLE YET.<br>STAY CONNECTED.<br><br>—<br><br>NEW OBJECTS WILL BE RELEASED<br>IN DUE TIME.</div><div class="footer"><span>RGZGOD.EXE<br>DIGITAL RITUALS<br>PHYSICAL OBJECTS</span><span>/ ∞</span></div></section>
 </div></div></section>
@@ -98,30 +95,7 @@ landing.onclick=()=>{landing.classList.remove('active');site.classList.add('acti
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.target).classList.add('active')});
 
 const scene=document.querySelector('.scene');
-const ritualInfo=document.getElementById('ritualInfo');
-const infoLabel=document.getElementById('infoLabel');
-const infoTitle=document.getElementById('infoTitle');
-const infoText=document.getElementById('infoText');
-const infoClose=document.getElementById('infoClose');
-const infoData={
- origin:['RITUAL 001 / ORIGIN','THE FIRST SIGNAL','The ritual begins when a digital symbol becomes aware of being observed.'],
- vision:['RITUAL 001 / VISION','THE EYE OPENS','Vision is represented as a loop: observe, interpret, return. Nothing is fixed; every reading changes the ritual.'],
- signal:['RITUAL 001 / SIGNAL','TRANSMISSION','Pink marks the active signal moving between the physical object and its digital origin.'],
- memory:['RITUAL 001 / MEMORY','TRACE / 001','Every repetition leaves a trace. The surrounding orbit records movement rather than history.'],
- threshold:['RITUAL 001 / THRESHOLD','BETWEEN FORMS','The entity exists between image and object, code and material, screen and physical space.'],
- core:['RITUAL 001 / CORE','THE OBSERVER','At the center is the simplest question: what happens when the symbol starts looking back?']
-};
-document.querySelectorAll('.hotspot').forEach(h=>{
- h.addEventListener('click',e=>{
-   e.stopPropagation();
-   const d=infoData[h.dataset.info];
-   infoLabel.textContent=d[0]; infoTitle.textContent=d[1]; infoText.textContent=d[2];
-   document.querySelectorAll('.hotspot').forEach(x=>x.classList.remove('active'));
-   h.classList.add('active'); ritualInfo.classList.add('open');
- });
-});
-infoClose.addEventListener('click',e=>{e.stopPropagation();ritualInfo.classList.remove('open');document.querySelectorAll('.hotspot').forEach(x=>x.classList.remove('active'))});
-ritualInfo.addEventListener('pointerdown',e=>e.stopPropagation());
+
 const rotValue=document.getElementById('rotValue'),vecValue=document.getElementById('vecValue'),stateValue=document.getElementById('stateValue');
 const coordA=document.getElementById('coordA'),coordB=document.getElementById('coordB'),coordC=document.getElementById('coordC');
 let frame=0;
