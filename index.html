@@ -2,12 +2,61 @@
 <html lang="cs">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iPhone Deploy Test</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RGZGOD.EXE</title>
 <style>
-body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b0b0f;color:#fff;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
-main{text-align:center;padding:40px}h1{font-size:clamp(42px,12vw,80px);margin:0 0 12px}p{color:#aaa;font-size:18px}.ok{display:inline-block;margin-top:20px;padding:10px 16px;border:1px solid #444;border-radius:999px}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap');
+:root{--bg:#f4f3ee;--ink:#080808;--pink:#ed2b79;--gray:#999}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink)}
+body{font-family:"IBM Plex Mono",monospace}
+button{font:inherit;color:inherit}
+.page{position:fixed;inset:0;background:var(--bg);display:none}.page.active{display:block}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#000 .45px,transparent .55px);background-size:4px 4px}
+.corner{position:absolute;width:16px;height:16px;z-index:8}.corner:before,.corner:after{content:"";position:absolute;background:#111}.corner:before{left:7px;width:1px;height:16px}.corner:after{top:7px;width:16px;height:1px}
+.tl{top:28px;left:28px}.tr{top:28px;right:28px}.bl{bottom:28px;left:28px}.br{bottom:28px;right:28px}
+#landing{cursor:pointer}.landing-center{height:100%;display:grid;place-items:center;text-align:center}
+.landing-title,.closed{font-family:Oswald,sans-serif;font-weight:700;letter-spacing:-.06em;transform:scaleX(.82);white-space:nowrap}
+.landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}.enter{margin-top:46px;font-size:11px;letter-spacing:.12em}
+.header{position:absolute;z-index:7;left:32px;right:32px;top:16px;display:flex;gap:28px;font-size:9px;letter-spacing:.1em}
+.brand{font-family:Oswald,sans-serif;font-size:20px;font-weight:700;line-height:.9}.brand small{display:block;font-family:"IBM Plex Mono";font-size:8px;font-weight:400;line-height:1.25;margin-top:4px}
+.header-mid{flex:1;text-align:center;position:relative}.header-mid:before,.header-mid:after{content:"";position:absolute;top:7px;width:43%;height:1px;background:#aaa}.header-mid:before{left:0}.header-mid:after{right:0}
+.tagline{line-height:1.5}
+.shell{position:absolute;left:14px;right:14px;top:102px;bottom:14px;border:1px solid #aaa}
+.nav{height:64px;border-bottom:1px solid #aaa;display:flex;align-items:center;padding:0 24px;gap:30px}.nav-brand{font-family:Oswald,sans-serif;font-size:19px;font-weight:700;margin-right:auto}
+.nav button{background:none;border:0;padding:8px 0;font-size:10px;cursor:pointer;position:relative}.nav button.active:after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:#111}
+.content{position:absolute;inset:64px 0 0;overflow:hidden}.panel{display:none;position:absolute;inset:0}.panel.active{display:block}
+.title{font-family:Oswald,sans-serif;font-weight:700;font-size:clamp(52px,7vw,92px);line-height:.84;letter-spacing:-.05em;transform:scaleX(.84);transform-origin:left}
+.ritual-title{position:absolute;top:34px;left:24px}.ritual-desc{position:absolute;top:142px;left:24px;font-size:9px;line-height:1.55}
+.ritual-meta{position:absolute;top:42px;right:24px;font-size:8px;line-height:1.7}.binary{position:absolute;top:142px;right:24px;color:var(--pink);font-size:8px;line-height:1.5}
+.scene{position:absolute;left:50%;top:53%;width:min(60vw,600px);height:min(60vw,600px);transform:translate(-50%,-50%);perspective:1000px;transform-style:preserve-3d}
+.orbit{position:absolute;inset:0;border:1px solid rgba(237,43,121,.5);border-radius:50%;transform-style:preserve-3d}.o1{transform:rotateX(70deg);animation:o1 12s linear infinite}.o2{transform:rotateY(70deg);animation:o2 15s linear infinite}.o3{inset:8%;transform:rotateX(60deg) rotateY(25deg);border-style:dashed;animation:o3 9s linear infinite}
+.orbit:before,.orbit:after{content:"";position:absolute;inset:14%;border:1px dashed rgba(237,43,121,.25);border-radius:50%}.orbit:after{inset:31%;border-style:solid}
+.cross-x,.cross-y{position:absolute;background:rgba(237,43,121,.3)}.cross-x{left:3%;right:3%;top:50%;height:1px;transform:rotate(-17deg)}.cross-y{top:3%;bottom:3%;left:50%;width:1px;transform:rotate(23deg)}
+.entity{position:absolute;left:50%;top:50%;width:45%;height:45%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:entity 8s linear infinite}.entity img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 7px rgba(237,43,121,.14))}
+.entity:before,.entity:after{content:"";position:absolute;inset:-12%;border:1px solid rgba(237,43,121,.25);border-radius:50%}.entity:before{transform:rotateX(65deg)}.entity:after{transform:rotateY(65deg)}
+@keyframes o1{to{transform:rotateX(70deg) rotateZ(360deg)}}@keyframes o2{to{transform:rotateY(70deg) rotateZ(-360deg)}}@keyframes o3{to{transform:rotateX(60deg) rotateY(25deg) rotateZ(360deg)}}@keyframes entity{to{transform:translate(-50%,-50%) rotateY(360deg) rotateX(8deg)}}
+.coords{position:absolute;right:24px;bottom:48px;font-size:8px}.footer{position:absolute;left:24px;right:24px;bottom:10px;display:flex;justify-content:space-between;font-size:8px;line-height:1.35}
+.about-copy{position:absolute;left:24px;top:38px;width:min(540px,66%);font-size:11px;line-height:1.65}.about-copy h1{margin:0 0 38px}.about-copy p{margin:0 0 20px}.about-side{position:absolute;right:24px;top:48px;font-size:8px;line-height:1.7}
+.shop-center{height:100%;display:grid;place-items:center}.closed{font-size:clamp(90px,14vw,190px);line-height:.8}.shop-note{position:absolute;left:24px;bottom:48px;font-size:8px;line-height:1.6}
+@media(max-width:700px){.header{left:18px;right:18px}.tagline{display:none}.header-mid:before,.header-mid:after{width:32%}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:58px;padding:0 15px;gap:18px}.nav-brand{font-size:17px}.nav button{font-size:8px}.content{inset:58px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:92vw;height:92vw;top:54%}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
+@media(prefers-reduced-motion:reduce){.orbit,.entity{animation:none}}
 </style>
 </head>
-<body><main><h1>DEPLOY OK</h1><p>Web vytvořený a nahraný z iPhonu přes ChatGPT + GitHub.</p><span class="ok">GitHub test</span></main></body>
-</html>
+<body>
+<section id="landing" class="page active"><div class="noise"></div><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div><div class="enter">[ ENTER ]</div></div></div></section>
+
+<section id="site" class="page"><div class="noise"></div><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="header-mid">WEB CONCEPT v.01</div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
+<div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
+<div class="content">
+<section id="ritual" class="panel active"><div class="ritual-title title">RITUAL<br>001</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="binary">01001000<br>01000111<br>01011010</div>
+<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="cross-x"></div><div class="cross-y"></div><div class="entity"><img src="ritual-001.svg" alt="Ritual 001"></div></div><div class="coords">50.0755°N<br>15.7801°E</div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ONE OF ONE</span><span>001 / ∞</span></div></section>
+<section id="about" class="panel"><div class="about-copy"><h1 class="title">DIGITAL<br>RITUALS<br>PHYSICAL<br>OBJECTS</h1><p>RGZGOD.EXE IS A PERSONAL ART PROJECT EXPLORING THE SPACE BETWEEN DIGITAL AND PHYSICAL REALMS.</p><p>SYMBOLS, ENTITIES AND FRAGMENTS BORN IN A VIRTUAL ENVIRONMENT, MATERIALIZED INTO REAL OBJECTS.</p><p>ONE OF ONE.<br>HANDMADE.<br>NO MASS PRODUCTION.</p><p>A CONTINUOUS EXPERIMENT.<br>A NEVER ENDING RITUAL.</p><p>—<br><br>ENTER THE VISION.</p></div><div class="about-side">ART<br>DESIGN<br>EXPERIMENT<br>COLLECT<br>REPEAT</div><div class="footer"><span>IDEAS<br>RITUALS<br>OBJECTS<br>ARCHIVE<br>CONTACT</span><span>SAME SIGNAL<br>DIFFERENT FORM.</span></div></section>
+<section id="shop" class="panel"><div class="shop-center"><div class="closed">CLOSED</div></div><div class="shop-note">SHOP<br>001<br><br>NOT AVAILABLE YET.<br>STAY CONNECTED.<br><br>—<br><br>NEW OBJECTS WILL BE RELEASED<br>IN DUE TIME.</div><div class="footer"><span>RGZGOD.EXE<br>DIGITAL RITUALS<br>PHYSICAL OBJECTS</span><span>/ ∞</span></div></section>
+</div></div></section>
+<script>
+const landing=document.getElementById('landing'),site=document.getElementById('site');
+landing.onclick=()=>{landing.classList.remove('active');site.classList.add('active')};
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.target).classList.add('active')});
+</script>
+</body></html>
