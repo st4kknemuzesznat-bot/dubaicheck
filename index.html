@@ -19,12 +19,12 @@ button{font:inherit;color:inherit}
 .landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}
 .header{position:absolute;z-index:7;left:32px;right:32px;top:16px;display:flex;gap:28px;font-size:9px;letter-spacing:.1em}
 .brand{font-family:Oswald,sans-serif;font-size:22px;font-weight:700;line-height:.88;letter-spacing:-.03em}.brand small{display:block;font-family:"IBM Plex Mono";font-size:7px;font-weight:400;line-height:1.35;letter-spacing:.12em;margin-top:5px}
-.header-mid{flex:1;text-align:center;position:relative}.header-mid:before,.header-mid:after{content:"";position:absolute;top:7px;width:43%;height:1px;background:#aaa}.header-mid:before{left:0}.header-mid:after{right:0}
+.header-mid{display:none}
 .tagline{line-height:1.5}
 .shell{position:absolute;left:14px;right:14px;top:102px;bottom:14px;border:1px solid #aaa}
-.nav{height:64px;border-bottom:1px solid #aaa;display:flex;align-items:center;padding:0 24px;gap:30px;letter-spacing:.01em}.nav-brand{font-family:"IBM Plex Mono",monospace;font-size:8px;font-weight:400;letter-spacing:.12em;margin-right:auto;color:#666}
+.nav{height:52px;border-bottom:1px solid #aaa;display:flex;align-items:center;justify-content:flex-end;padding:0 18px;gap:28px;letter-spacing:.01em}.nav-brand{display:none}
 .nav button{background:none;border:0;padding:8px 0;font-size:10px;cursor:pointer;position:relative}.nav button.active:after{content:"";position:absolute;left:0;right:0;bottom:1px;height:1px;background:#111}
-.content{position:absolute;inset:64px 0 0;overflow:hidden}.panel{display:none;position:absolute;inset:0}.panel.active{display:block}
+.content{position:absolute;inset:52px 0 0;overflow:hidden}.panel{display:none;position:absolute;inset:0}.panel.active{display:block}
 .title{font-family:Oswald,sans-serif;font-weight:700;font-size:clamp(52px,7vw,92px);line-height:.84;letter-spacing:-.05em;transform:scaleX(.84);transform-origin:left}.ritual-title{white-space:nowrap}
 .ritual-title{position:absolute;top:34px;left:24px}.ritual-desc{position:absolute;top:142px;left:24px;font-size:9px;line-height:1.55;letter-spacing:.01em}
 .ritual-meta{position:absolute;top:42px;right:24px;font-size:8px;line-height:1.7}.binary{display:none}
@@ -40,7 +40,7 @@ button{font:inherit;color:inherit}
 .about-copy{position:absolute;left:24px;top:38px;width:min(540px,66%);font-size:11px;line-height:1.65}.about-copy h1{margin:0 0 38px}.about-copy p{margin:0 0 20px}.about-side{position:absolute;right:24px;top:48px;font-size:8px;line-height:1.7}
 .shop-center{height:100%;display:grid;place-items:center}.closed{font-size:clamp(90px,14vw,190px);line-height:.8}.shop-note{position:absolute;left:24px;bottom:48px;font-size:8px;line-height:1.6}
 @media(max-width:700px){.matrix-rain{opacity:.12}.matrix-column{font-size:8px}
-.header{left:18px;right:18px}.tagline{display:none}.header-mid:before,.header-mid:after{width:32%}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:58px;padding:0 15px;gap:18px}.nav-brand{font-size:17px}.nav button{font-size:8px}.content{inset:58px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:105vw;height:105vw;top:54%}.telemetry{left:15px;bottom:38px}.coords{right:15px;bottom:38px}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
+.header{left:18px;right:18px}.tagline{display:none}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:50px;padding:0 15px;gap:20px}.nav button{font-size:8px}.content{inset:50px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:105vw;height:105vw;top:54%}.telemetry{left:15px;bottom:38px}.coords{right:15px;bottom:38px}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
 @media(prefers-reduced-motion:reduce){.orbit,.entity{animation:none}}
 </style>
 </head>
@@ -48,7 +48,7 @@ button{font:inherit;color:inherit}
 <section id="landing" class="page active"><div class="noise"></div><div class="codefield" aria-hidden="true"></div><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div></div></div></section>
 
 <section id="site" class="page"><div class="noise"></div><div class="codefield" aria-hidden="true"></div>
-<header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="header-mid">RITUAL 001</div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
+<header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
 <div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
 <div class="content">
 <section id="ritual" class="panel active"><div class="ritual-title title">RITUAL 001</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="matrix-rain" aria-hidden="true"></div><div class="scanline" aria-hidden="true"></div>
