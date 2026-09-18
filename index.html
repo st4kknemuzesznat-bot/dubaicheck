@@ -31,15 +31,16 @@ button{font:inherit;color:inherit}
 .scene{position:absolute;z-index:2;left:50%;top:53%;width:min(68vw,680px);height:min(68vw,680px);transform:translate(-50%,-50%) rotateX(0deg) rotateY(0deg);perspective:1000px;transform-style:preserve-3d;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}.scene.dragging{cursor:grabbing}
 .orbit{position:absolute;inset:0;border:1px solid rgba(237,43,121,.5);border-radius:50%;transform-style:preserve-3d}.o1{transform:rotateX(70deg);animation:o1 12s linear infinite}.o2{transform:rotateY(70deg);animation:o2 15s linear infinite}.o3{inset:8%;transform:rotateX(60deg) rotateY(25deg);border-style:dashed;animation:o3 9s linear infinite}
 .orbit:before,.orbit:after{content:"";position:absolute;inset:14%;border:1px dashed rgba(237,43,121,.25);border-radius:50%}.orbit:after{inset:31%;border-style:solid}
-.entity{position:absolute;left:50%;top:50%;width:58%;height:58%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:entity 8s linear infinite}.entity img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(237,43,121,.10))}
-.entity:before,.entity:after{content:"";position:absolute;inset:-12%;border:1px solid rgba(237,43,121,.25);border-radius:50%}.entity:before{transform:rotateX(65deg)}.entity:after{transform:rotateY(65deg)}
+.entity{position:absolute;left:50%;top:50%;width:66%;height:66%;transform:translate(-50%,-50%);transform-style:preserve-3d;animation:entity 8s linear infinite}.entity img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(237,43,121,.10))}
+.entity:before,.entity:after{content:"";position:absolute;inset:-8%;border:1px solid rgba(237,43,121,.22);border-radius:50%}.entity:before{transform:rotateX(65deg)}.entity:after{transform:rotateY(65deg)}
 @keyframes o1{to{transform:rotateX(70deg) rotateZ(360deg)}}@keyframes o2{to{transform:rotateY(70deg) rotateZ(-360deg)}}@keyframes o3{to{transform:rotateX(60deg) rotateY(25deg) rotateZ(360deg)}}@keyframes entity{to{transform:translate(-50%,-50%) rotateY(360deg) rotateX(8deg)}}
-.matrix-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.18;mix-blend-mode:multiply}.matrix-column{position:absolute;top:-35%;font-family:"IBM Plex Mono",monospace;font-size:10px;line-height:1.8;letter-spacing:.08em;color:var(--pink);white-space:pre;writing-mode:vertical-rl;animation:matrixFall linear infinite}.matrix-column span{display:block}.matrix-column:nth-child(3n){opacity:.55}.matrix-column:nth-child(4n){color:#111;opacity:.12}@keyframes matrixFall{from{transform:translateY(-5%)}to{transform:translateY(145%)}}
-.coords{position:absolute;right:24px;bottom:48px;font-size:8px}.footer{position:absolute;left:24px;right:24px;bottom:10px;display:flex;justify-content:space-between;font-size:8px;line-height:1.35}
+.scanline{position:absolute;left:0;right:0;height:1px;top:0;background:rgba(237,43,121,.18);pointer-events:none;animation:scan 6s ease-in-out infinite}@keyframes scan{0%,100%{transform:translateY(0);opacity:0}10%{opacity:.7}90%{opacity:.7}50%{transform:translateY(100vh)}}
+.matrix-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.13;mix-blend-mode:multiply}.matrix-column{position:absolute;top:-35%;font-family:"IBM Plex Mono",monospace;font-size:10px;line-height:1.8;letter-spacing:.08em;color:var(--pink);white-space:pre;writing-mode:vertical-rl;animation:matrixFall linear infinite}.matrix-column span{display:block}.matrix-column:nth-child(3n){opacity:.55}.matrix-column:nth-child(4n){color:#111;opacity:.12}.matrix-column:nth-child(5n){font-size:7px;letter-spacing:.14em}@keyframes matrixFall{from{transform:translateY(-5%)}to{transform:translateY(145%)}}
+.coords{position:absolute;right:24px;bottom:48px;font-size:8px;line-height:1.7;text-align:right;letter-spacing:.08em}.telemetry{position:absolute;left:24px;bottom:48px;font-size:8px;line-height:1.7;letter-spacing:.08em}.telemetry .value{font-family:"IBM Plex Mono",monospace;display:inline-block;min-width:74px}.footer{position:absolute;left:24px;right:24px;bottom:10px;display:flex;justify-content:space-between;font-size:8px;line-height:1.35;border-top:1px solid #bbb;padding-top:8px}.footer span:last-child{font-size:9px}
 .about-copy{position:absolute;left:24px;top:38px;width:min(540px,66%);font-size:11px;line-height:1.65}.about-copy h1{margin:0 0 38px}.about-copy p{margin:0 0 20px}.about-side{position:absolute;right:24px;top:48px;font-size:8px;line-height:1.7}
 .shop-center{height:100%;display:grid;place-items:center}.closed{font-size:clamp(90px,14vw,190px);line-height:.8}.shop-note{position:absolute;left:24px;bottom:48px;font-size:8px;line-height:1.6}
 @media(max-width:700px){.matrix-rain{opacity:.12}.matrix-column{font-size:8px}
-.header{left:18px;right:18px}.tagline{display:none}.header-mid:before,.header-mid:after{width:32%}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:58px;padding:0 15px;gap:18px}.nav-brand{font-size:17px}.nav button{font-size:8px}.content{inset:58px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:105vw;height:105vw;top:54%}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
+.header{left:18px;right:18px}.tagline{display:none}.header-mid:before,.header-mid:after{width:32%}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:58px;padding:0 15px;gap:18px}.nav-brand{font-size:17px}.nav button{font-size:8px}.content{inset:58px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:105vw;height:105vw;top:54%}.telemetry{left:15px;bottom:38px}.coords{right:15px;bottom:38px}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
 @media(prefers-reduced-motion:reduce){.orbit,.entity{animation:none}}
 </style>
 </head>
@@ -50,8 +51,8 @@ button{font:inherit;color:inherit}
 <header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="header-mid">DIGITAL RITUALS</div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
 <div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
 <div class="content">
-<section id="ritual" class="panel active"><div class="ritual-title title">RITUAL</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="matrix-rain" aria-hidden="true"></div>
-<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="entity"><img src="ritual-001-final.svg" alt="Ritual 001"></div></div><div class="coords">50.0755°N<br>15.7801°E</div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ONE OF ONE</span><span>/ ∞</span></div></section>
+<section id="ritual" class="panel active"><div class="ritual-title title">RITUAL</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="matrix-rain" aria-hidden="true"></div><div class="scanline" aria-hidden="true"></div>
+<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="entity"><img src="ritual-001-final.svg" alt="Ritual 001"></div></div><div class="telemetry">ROTATION <span class="value" id="rotValue">000° / 000°</span><br>VECTOR <span class="value" id="vecValue">01.00 / 01.00</span><br>STATE <span class="value" id="stateValue">ACTIVE</span></div><div class="coords"><span id="coordA">50.0755°N</span><br><span id="coordB">15.7801°E</span><br><span id="coordC">/ ∞</span></div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ARCHIVE / 001</span><span>/ ∞</span></div></section>
 <section id="about" class="panel"><div class="about-copy"><h1 class="title">DIGITAL<br>RITUALS<br>PHYSICAL<br>OBJECTS</h1><p>RGZGOD.EXE IS A PERSONAL ART PROJECT EXPLORING THE SPACE BETWEEN DIGITAL AND PHYSICAL REALMS.</p><p>SYMBOLS, ENTITIES AND FRAGMENTS BORN IN A VIRTUAL ENVIRONMENT, MATERIALIZED INTO REAL OBJECTS.</p><p>ONE OF ONE.<br>HANDMADE.<br>NO MASS PRODUCTION.</p><p>A CONTINUOUS EXPERIMENT.<br>A NEVER ENDING RITUAL.</p><p>—<br><br>ENTER THE VISION.</p></div><div class="about-side">ART<br>DESIGN<br>EXPERIMENT<br>COLLECT<br>REPEAT</div><div class="footer"><span>IDEAS<br>RITUALS<br>OBJECTS<br>ARCHIVE<br>CONTACT</span><span>SAME SIGNAL<br>DIFFERENT FORM.</span></div></section>
 <section id="shop" class="panel"><div class="shop-center"><div class="closed">CLOSED</div></div><div class="shop-note">SHOP<br>001<br><br>NOT AVAILABLE YET.<br>STAY CONNECTED.<br><br>—<br><br>NEW OBJECTS WILL BE RELEASED<br>IN DUE TIME.</div><div class="footer"><span>RGZGOD.EXE<br>DIGITAL RITUALS<br>PHYSICAL OBJECTS</span><span>/ ∞</span></div></section>
 </div></div></section>
@@ -76,8 +77,21 @@ landing.onclick=()=>{landing.classList.remove('active');site.classList.add('acti
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.target).classList.add('active')});
 
 const scene=document.querySelector('.scene');
+const rotValue=document.getElementById('rotValue'),vecValue=document.getElementById('vecValue'),stateValue=document.getElementById('stateValue');
+const coordA=document.getElementById('coordA'),coordB=document.getElementById('coordB'),coordC=document.getElementById('coordC');
+let frame=0;
 let rx=0,ry=0,lastX=0,lastY=0,dragging=false;
-const render=()=>{scene.style.transform=`translate(-50%,-50%) rotateX(${rx}deg) rotateY(${ry}deg)`};
+const render=()=>{
+ scene.style.transform=`translate(-50%,-50%) rotateX(${rx}deg) rotateY(${ry}deg)`;
+ const ax=((rx%360)+360)%360, ay=((ry%360)+360)%360;
+ const vx=(Math.cos(ay*Math.PI/180)).toFixed(2), vy=(Math.sin(ax*Math.PI/180)).toFixed(2);
+ rotValue.textContent=`${String(Math.round(ax)).padStart(3,'0')}° / ${String(Math.round(ay)).padStart(3,'0')}°`;
+ vecValue.textContent=`${vx} / ${vy}`;
+ stateValue.textContent=dragging?'MANUAL':'ACTIVE';
+ coordA.textContent=`50.${String(Math.abs(Math.round(ax*17.3))%10000).padStart(4,'0')}°N`;
+ coordB.textContent=`15.${String(Math.abs(Math.round(7801+ay*13.7))%10000).padStart(4,'0')}°E`;
+ coordC.textContent=`/ ${String(1000+Math.round((Math.abs(ax)+Math.abs(ay))*3)).padStart(4,'0')}`;
+};
 scene.addEventListener('pointerdown',e=>{
  dragging=true;lastX=e.clientX;lastY=e.clientY;scene.classList.add('dragging');
  scene.querySelectorAll('.orbit,.entity').forEach(el=>el.style.animationPlayState='paused');
@@ -90,5 +104,6 @@ scene.addEventListener('pointermove',e=>{
 });
 const stop=e=>{dragging=false;scene.classList.remove('dragging');if(e?.pointerId!=null)scene.releasePointerCapture?.(e.pointerId)};
 scene.addEventListener('pointerup',stop);scene.addEventListener('pointercancel',stop);scene.addEventListener('pointerleave',()=>{});
+render();
 </script>
 </body></html>
