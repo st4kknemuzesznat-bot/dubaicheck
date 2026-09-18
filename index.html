@@ -14,9 +14,9 @@ button{font:inherit;color:inherit}
 .noise{position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#000 .45px,transparent .55px);background-size:4px 4px}.codefield{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;opacity:.105}.codecol{position:absolute;top:-22%;font-family:"IBM Plex Mono",monospace;font-size:6px;line-height:1.9;letter-spacing:.08em;white-space:pre;writing-mode:vertical-rl;animation:codeFall linear infinite}.codecol span{display:inline}.codecol .brandcode{font-size:5px;letter-spacing:.04em;font-weight:500}@keyframes codeFall{from{transform:translateY(-8%)}to{transform:translateY(125%)}}
 .corner:before,.corner:after{content:"";position:absolute;background:#111}.corner:before{left:7px;width:1px;height:16px}.corner:after{top:7px;width:16px;height:1px}
 .tl{top:28px;left:28px}.tr{top:28px;right:28px}.bl{bottom:28px;left:28px}.br{bottom:28px;right:28px}
-#landing{cursor:pointer}.landing-center{height:100%;display:grid;place-items:center;text-align:center}
+#landing{cursor:pointer;transition:background .35s ease}.landing-center{height:100%;display:grid;place-items:center;text-align:center}
 .landing-title,.closed{font-family:Oswald,sans-serif;font-weight:700;letter-spacing:-.06em;transform:scaleX(.82);white-space:nowrap}
-.landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}
+.landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}.landing-enter{margin-top:24px;font-size:9px;letter-spacing:.22em;opacity:.65;transition:opacity .25s,letter-spacing .25s}.landing-center.entering .landing-enter{opacity:1;letter-spacing:.34em}.landing-center.entering .codefield{opacity:.32}.landing-center{position:relative;z-index:3}
 .header{position:absolute;z-index:7;left:32px;right:32px;top:16px;display:flex;gap:28px;font-size:9px;letter-spacing:.1em}
 .brand{font-family:Oswald,sans-serif;font-size:22px;font-weight:700;line-height:.88;letter-spacing:-.03em}.brand small{display:block;font-family:"IBM Plex Mono";font-size:7px;font-weight:400;line-height:1.35;letter-spacing:.12em;margin-top:5px}
 .header-mid{display:none}
@@ -45,7 +45,7 @@ button{font:inherit;color:inherit}
 </style>
 </head>
 <body>
-<section id="landing" class="page active"><div class="noise"></div><div class="codefield" aria-hidden="true"></div><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div></div></div></section>
+<section id="landing" class="page active"><div class="noise"></div><div class="codefield" aria-hidden="true"></div><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div><div class="landing-enter">ENTER THE VISION</div></div></div></section>
 
 <section id="site" class="page"><div class="noise"></div><div class="codefield" aria-hidden="true"></div>
 <header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
@@ -91,7 +91,14 @@ if(matrix){
   }
 }
 const landing=document.getElementById('landing'),site=document.getElementById('site');
-landing.onclick=()=>{landing.classList.remove('active');site.classList.add('active')};
+let entering=false;
+landing.onclick=()=>{
+ if(entering)return;
+ entering=true;
+ landing.querySelector('.landing-center').classList.add('entering');
+ landing.querySelector('.landing-enter').textContent='SIGNAL DETECTED';
+ setTimeout(()=>{landing.classList.remove('active');site.classList.add('active');},1200);
+};
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.target).classList.add('active')});
 
 const scene=document.querySelector('.scene');
