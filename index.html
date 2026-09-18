@@ -16,7 +16,7 @@ button{font:inherit;color:inherit}
 .tl{top:28px;left:28px}.tr{top:28px;right:28px}.bl{bottom:28px;left:28px}.br{bottom:28px;right:28px}
 #landing{cursor:pointer}.landing-center{height:100%;display:grid;place-items:center;text-align:center}
 .landing-title,.closed{font-family:Oswald,sans-serif;font-weight:700;letter-spacing:-.06em;transform:scaleX(.82);white-space:nowrap}
-.landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}.enter{margin-top:46px;font-size:11px;letter-spacing:.12em}
+.landing-title{font-size:clamp(64px,14vw,190px);line-height:.8}
 .header{position:absolute;z-index:7;left:32px;right:32px;top:16px;display:flex;gap:28px;font-size:9px;letter-spacing:.1em}
 .brand{font-family:Oswald,sans-serif;font-size:20px;font-weight:700;line-height:.9}.brand small{display:block;font-family:"IBM Plex Mono";font-size:8px;font-weight:400;line-height:1.25;margin-top:4px}
 .header-mid{flex:1;text-align:center;position:relative}.header-mid:before,.header-mid:after{content:"";position:absolute;top:7px;width:43%;height:1px;background:#aaa}.header-mid:before{left:0}.header-mid:after{right:0}
@@ -43,14 +43,14 @@ button{font:inherit;color:inherit}
 </style>
 </head>
 <body>
-<section id="landing" class="page active"><div class="noise"></div><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div><div class="enter">[ ENTER ]</div></div></div></section>
+<section id="landing" class="page active"><div class="noise"></div><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div></div></div></section>
 
 <section id="site" class="page"><div class="noise"></div><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
 <header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="header-mid">WEB CONCEPT v.01</div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
 <div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
 <div class="content">
 <section id="ritual" class="panel active"><div class="ritual-title title">RITUAL<br>001</div><div class="ritual-desc">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div><div class="ritual-meta">ROTATE<br>OBSERVE<br>DECIPHER<br>REPEAT</div><div class="binary">01001000<br>01000111<br>01011010</div>
-<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="cross-x"></div><div class="cross-y"></div><div class="entity"><img src="ritual-001.svg" alt="Ritual 001"></div></div><div class="coords">50.0755°N<br>15.7801°E</div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ONE OF ONE</span><span>001 / ∞</span></div></section>
+<div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="cross-x"></div><div class="cross-y"></div><div class="entity"><img src="ritual-001-final.svg" alt="Ritual 001"></div></div><div class="coords">50.0755°N<br>15.7801°E</div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ONE OF ONE</span><span>001 / ∞</span></div></section>
 <section id="about" class="panel"><div class="about-copy"><h1 class="title">DIGITAL<br>RITUALS<br>PHYSICAL<br>OBJECTS</h1><p>RGZGOD.EXE IS A PERSONAL ART PROJECT EXPLORING THE SPACE BETWEEN DIGITAL AND PHYSICAL REALMS.</p><p>SYMBOLS, ENTITIES AND FRAGMENTS BORN IN A VIRTUAL ENVIRONMENT, MATERIALIZED INTO REAL OBJECTS.</p><p>ONE OF ONE.<br>HANDMADE.<br>NO MASS PRODUCTION.</p><p>A CONTINUOUS EXPERIMENT.<br>A NEVER ENDING RITUAL.</p><p>—<br><br>ENTER THE VISION.</p></div><div class="about-side">ART<br>DESIGN<br>EXPERIMENT<br>COLLECT<br>REPEAT</div><div class="footer"><span>IDEAS<br>RITUALS<br>OBJECTS<br>ARCHIVE<br>CONTACT</span><span>SAME SIGNAL<br>DIFFERENT FORM.</span></div></section>
 <section id="shop" class="panel"><div class="shop-center"><div class="closed">CLOSED</div></div><div class="shop-note">SHOP<br>001<br><br>NOT AVAILABLE YET.<br>STAY CONNECTED.<br><br>—<br><br>NEW OBJECTS WILL BE RELEASED<br>IN DUE TIME.</div><div class="footer"><span>RGZGOD.EXE<br>DIGITAL RITUALS<br>PHYSICAL OBJECTS</span><span>/ ∞</span></div></section>
 </div></div></section>
@@ -72,7 +72,7 @@ scene.addEventListener('pointermove',e=>{
  ry+=(e.clientX-lastX)*.45;rx-=(e.clientY-lastY)*.45;
  rx=Math.max(-75,Math.min(75,rx));lastX=e.clientX;lastY=e.clientY;render();
 });
-const stop=()=>{dragging=false;scene.classList.remove('dragging')};
+const stop=()=>{dragging=false;scene.classList.remove('dragging');scene.releasePointerCapture?.(event?.pointerId)};
 scene.addEventListener('pointerup',stop);scene.addEventListener('pointercancel',stop);scene.addEventListener('pointerleave',()=>{});
 </script>
 </body></html>
