@@ -370,12 +370,8 @@ function drawPixelField(now){
   const st=pixelBuildState(now),t=now*.001,base=Math.min(pixelW,pixelH);
   pixelCtx.clearRect(0,0,pixelW,pixelH);
 
-  /* Near-black volumetric field. */
-  const glow=pixelCtx.createRadialGradient(pixelW*.5,pixelH*.48,0,pixelW*.5,pixelH*.48,base*.48);
-  glow.addColorStop(0,'rgba(91,224,255,.035)');
-  glow.addColorStop(.38,'rgba(140,124,255,.018)');
-  glow.addColorStop(1,'rgba(0,0,0,0)');
-  pixelCtx.fillStyle=glow;pixelCtx.fillRect(0,0,pixelW,pixelH);
+  /* Transparent field: never paint the canvas rectangle itself. */
+  /* The entity is drawn only from sampled pixels below. */
 
   const projected=[];
   for(let i=0;i<pixelParticles.length;i++){
