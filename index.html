@@ -122,6 +122,36 @@ body.digital-dimension .nav{border-color:#303044}.digital-dimension .nav button{
 .digital-dimension .header:after{color:#8c83ff}.digital-dimension .shell:before{background:linear-gradient(rgba(91,224,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.018) 1px,transparent 1px)}.digital-dimension .content:after{color:#8c83ff}
 .digital-dimension .tech-popup{border-color:rgba(91,224,255,.52);color:#d8e9ff;background:rgba(2,2,5,.9);box-shadow:0 0 15px rgba(91,224,255,.1)}.digital-dimension .tech-popup b{color:#fff}.digital-dimension .tech-popup i{color:#ff62dc}.digital-dimension .tech-popup:before{border-color:#ff2bd6;background:#020205}.digital-dimension .tech-popup:after{background:#5be0ff}
 @keyframes artifactGlitch{0%,72%,100%{transform:translate(0,0)}74%{transform:translate(-2px,1px)}76%{transform:translate(3px,-1px)}78%{transform:translate(0,0)}}
+
+body.digital-dimension .entity .matrix-entity{
+  image-rendering:pixelated;
+  filter:contrast(1.35) brightness(1.08) drop-shadow(0 0 4px rgba(210,235,255,.38));
+  transform:scale(.99);
+}
+body.digital-dimension .entity .matrix-entity{animation:artifactPixel 2.2s steps(1,end) infinite}
+body.digital-dimension .entity:after{
+  border-color:rgba(220,231,255,.24)!important;
+  filter:blur(.2px);
+}
+body.digital-dimension .scene .entity:before{
+  border-color:rgba(91,224,255,.28)!important;
+}
+@keyframes artifactPixel{
+  0%,68%,100%{transform:translate(0,0);opacity:1}
+  70%{transform:translate(-3px,0);opacity:.92}
+  71%{transform:translate(4px,-1px);opacity:.72}
+  72%{transform:translate(-1px,2px);opacity:1}
+  73%{transform:translate(0,0);opacity:.82}
+  88%{transform:translate(0,0);opacity:1}
+  89%{transform:translate(6px,0);opacity:.55}
+  90%{transform:translate(-5px,1px);opacity:.9}
+  91%{transform:translate(0,0);opacity:1}
+}
+body.digital-dimension .scene:after{
+  opacity:.18;
+  letter-spacing:.28em;
+  text-shadow:0 0 4px rgba(220,240,255,.55);
+}
 </style>
 </head>
 <body>
