@@ -171,6 +171,36 @@ body.digital-dimension .matrix-column:nth-child(5n){color:#5be0ff}
 body.digital-dimension .matrix-column:nth-child(7n){color:#dce7ff}
 body.digital-dimension .codecol{color:#dce7ff;text-shadow:0 0 5px rgba(91,224,255,.28)}
 body.digital-dimension .tech-popup{border-color:rgba(91,224,255,.42);color:#dce7ff}
+
+/* PARTICLE PHYSICALIZATION — deterministic pixel assembly / decay */
+body.digital-dimension .artifact-stack{overflow:visible}
+body.digital-dimension .pixel-field{
+  position:absolute;inset:-4%;
+  width:108%;height:108%;
+  display:block;image-rendering:pixelated;
+  mix-blend-mode:screen;
+  opacity:1;
+  z-index:4;
+  pointer-events:none;
+}
+body.digital-dimension .artifact-fallback{display:none!important}
+body:not(.digital-dimension) .pixel-field{display:none}
+@keyframes pixelScanPulse{
+  0%,100%{opacity:.18;transform:translateX(-8%)}
+  50%{opacity:.55;transform:translateX(8%)}
+}
+body.digital-dimension .entity:after{
+  content:"";
+  inset:-24%;
+  border:0;
+  border-radius:0;
+  background:
+    linear-gradient(90deg,transparent 0 48%,rgba(91,224,255,.12) 49%,transparent 50% 100%);
+  background-size:19px 100%;
+  animation:pixelScanPulse 2.8s steps(7,end) infinite;
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
 </style>
 </head>
 <body>
@@ -184,9 +214,8 @@ body.digital-dimension .tech-popup{border-color:rgba(91,224,255,.42);color:#dce7
 <div class="scene"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="entity">
 <img class="original-entity" src="ritual-001-final.svg" alt="Ritual 001">
 <div class="artifact-stack" aria-label="Ritual 001 digital artifact">
-<img class="matrix-entity artifact-base" src="ritual-001-matrix.svg?v=b6b6e870" alt="">
-<img class="matrix-entity artifact-cyan" src="ritual-001-matrix.svg?v=b6b6e870" alt="">
-<img class="matrix-entity artifact-violet" src="ritual-001-matrix.svg?v=b6b6e870" alt="">
+<canvas class="pixel-field" id="pixelField" aria-hidden="true"></canvas>
+<img class="matrix-entity artifact-fallback" src="ritual-001-matrix.svg?v=b6b6e870" alt="">
 </div>
 </div><div class="tech-popup tp1"><b>ANOMALY / 001</b>ORIGIN <i>NETWORK</i><br>FORM: NON-PHYSICAL<br>TRACE: DETECTED</div><div class="tech-popup tp2"><b>PHYSICALIZATION</b>SYNC <i>67.4%</i><br>MATTER / SIGNAL<br>BOUNDARY: UNSTABLE</div><div class="tech-popup tp3"><b>ENTITY SCAN</b>VECTOR: 8A-01-77<br>DEPTH: <i>03.81</i><br>COHERENCE: 92%</div><div class="tech-popup tp4"><b>THRESHOLD EVENT</b>NETWORK → REAL<br>PORT: <i>001</i><br>STATE: MATERIALIZING</div></div><div class="telemetry">ROTATION <span class="value" id="rotValue">000° / 000°</span><br>VECTOR <span class="value" id="vecValue">01.00 / 01.00</span><br>STATE <span class="value" id="stateValue">ACTIVE</span></div><div class="coords"><span id="coordA">50.0755°N</span><br><span id="coordB">15.7801°E</span><br><span id="coordC">/ ∞</span></div><div class="footer"><span>DIGITAL RITUALS<br>PHYSICAL OBJECTS<br>ARCHIVE / 001</span><span>/ ∞</span></div></section>
 <section id="about" class="panel"><div class="about-copy"><h1 class="title">DIGITAL<br>RITUALS<br>PHYSICAL<br>OBJECTS</h1><p>RGZGOD.EXE IS A PERSONAL ART PROJECT EXPLORING THE SPACE BETWEEN DIGITAL AND PHYSICAL REALMS.</p><p>SYMBOLS, ENTITIES AND FRAGMENTS BORN IN A VIRTUAL ENVIRONMENT, MATERIALIZED INTO REAL OBJECTS.</p><p>A CONTINUOUS EXPERIMENT.<br>A NEVER ENDING RITUAL.</p><p>ENTER THE VISION.</p></div><div class="about-side">ART<br>DESIGN<br>EXPERIMENT<br>COLLECT<br>REPEAT</div><div class="footer"><span>IDEAS<br>RITUALS<br>OBJECTS<br>ARCHIVE<br>CONTACT</span><span>SAME SIGNAL<br>DIFFERENT FORM.</span></div></section>
@@ -242,6 +271,143 @@ landing.onclick=()=>{
  setTimeout(()=>{landing.classList.remove('active');site.classList.add('active');},1200);
 };
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.target).classList.add('active')});
+
+
+/* Pixel renderer: the entity is reconstructed from discrete signal cells, then loses coherence. */
+const pixelCanvas=document.getElementById('pixelField');
+const pixelCtx=pixelCanvas?.getContext('2d',{alpha:true});
+const pixelSource=new Image();
+let pixelParticles=[];
+let pixelReady=false;
+let pixelW=0,pixelH=0;
+
+function pixelEase(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+function pixelBuildState(now){
+  const cycle=8200;
+  const p=(now%cycle)/cycle;
+  if(p<.30) return {mode:'ASSEMBLING',progress:pixelEase(p/.30),strength:1};
+  if(p<.57) return {mode:'STABLE',progress:1,strength:1};
+  if(p<.90) return {mode:'DECAYING',progress:1-pixelEase((p-.57)/.33),strength:1};
+  return {mode:'SIGNAL LOST',progress:0,strength:.25};
+}
+function resizePixelCanvas(){
+  if(!pixelCanvas||!pixelCtx)return;
+  const rect=pixelCanvas.getBoundingClientRect();
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  pixelW=Math.max(1,rect.width); pixelH=Math.max(1,rect.height);
+  pixelCanvas.width=Math.round(pixelW*dpr);
+  pixelCanvas.height=Math.round(pixelH*dpr);
+  pixelCtx.setTransform(dpr,0,0,dpr,0,0);
+}
+function buildPixelParticles(){
+  if(!pixelCanvas)return;
+  const S=160;
+  const off=document.createElement('canvas');
+  off.width=S;off.height=S;
+  const o=off.getContext('2d',{willReadFrequently:true});
+  o.clearRect(0,0,S,S);
+  o.drawImage(pixelSource,0,0,S,S);
+  const data=o.getImageData(0,0,S,S).data;
+  const pts=[];
+  for(let y=0;y<S;y++){
+    for(let x=0;x<S;x++){
+      const i=(y*S+x)*4, a=data[i+3];
+      if(a<18)continue;
+      const brightness=(data[i]+data[i+1]+data[i+2])/3;
+      const edge=(Math.random()>.72);
+      pts.push({
+        x:(x+.5)/S,y:(y+.5)/S,
+        size:(edge?1.15:1)*(.95+Math.random()*1.65),
+        alpha:Math.min(1,.35+a/255*.7),
+        hue:brightness>215?'white':(data[i+1]>150?'cyan':'violet'),
+        seed:Math.random()*Math.PI*2,
+        speed:.55+Math.random()*.9
+      });
+    }
+  }
+  /* Keep the raster legible on mobile while preserving enough cells to feel procedural. */
+  const max=1850;
+  if(pts.length>max){
+    const step=pts.length/max;
+    const reduced=[];
+    for(let i=0;i<max;i++)reduced.push(pts[Math.floor(i*step)]);
+    pixelParticles=reduced;
+  }else pixelParticles=pts;
+  pixelReady=true;
+}
+function drawPixelField(now){
+  if(!pixelReady||!pixelCanvas||!pixelCtx)return;
+  const state=pixelBuildState(now);
+  pixelCtx.clearRect(0,0,pixelW,pixelH);
+  const t=now*.001;
+  const base=Math.min(pixelW,pixelH);
+  
+  /* Low-energy volumetric glow behind the cells. */
+  const glow=pixelCtx.createRadialGradient(pixelW*.5,pixelH*.5,0,pixelW*.5,pixelH*.5,base*.46);
+  glow.addColorStop(0,'rgba(91,224,255,.035)');
+  glow.addColorStop(.48,'rgba(140,124,255,.018)');
+  glow.addColorStop(1,'rgba(0,0,0,0)');
+  pixelCtx.fillStyle=glow;
+  pixelCtx.fillRect(0,0,pixelW,pixelH);
+
+  for(let i=0;i<pixelParticles.length;i++){
+    const p=pixelParticles[i];
+    const tx=p.x*pixelW, ty=p.y*pixelH;
+    const angle=p.seed;
+    const scatter=base*(26+p.speed*52);
+    const driftX=Math.cos(angle+t*p.speed*.7)*base*(3+p.speed*5);
+    const driftY=Math.sin(angle*1.7+t*p.speed*.55)*base*(2+p.speed*4);
+    const sx=tx+Math.cos(angle)*scatter+driftX;
+    const sy=ty+Math.sin(angle)*scatter+driftY;
+    let x=tx+(sx-tx)*(1-state.progress);
+    let y=ty+(sy-ty)*(1-state.progress);
+    
+    /* Pixel jitter becomes visible at the coherence boundary. */
+    const jitter=(state.mode==='STABLE'?0.35:1.5+Math.abs(Math.sin(t*8+p.seed))*2.5);
+    x+=Math.round(Math.cos(t*3+p.seed)*jitter);
+    y+=Math.round(Math.sin(t*3.7+p.seed)*jitter);
+    
+    const pulse=.72+.28*Math.sin(t*4.5+p.seed);
+    const a=p.alpha*pulse*state.strength;
+    const size=Math.max(1.2,p.size*(base/160));
+    
+    let core='rgba(220,235,255,'+a.toFixed(3)+')';
+    if(p.hue==='cyan') core='rgba(91,224,255,'+a.toFixed(3)+')';
+    if(p.hue==='violet') core='rgba(140,124,255,'+(a*.78).toFixed(3)+')';
+    
+    /* Soft signal bloom + hard square core. */
+    pixelCtx.fillStyle=core;
+    pixelCtx.fillRect(Math.round(x-size*.55),Math.round(y-size*.55),Math.ceil(size),Math.ceil(size));
+    if((i%7===0)&&a>.25){
+      pixelCtx.fillStyle=p.hue==='violet'?'rgba(140,124,255,.08)':'rgba(91,224,255,.07)';
+      pixelCtx.fillRect(Math.round(x-size*1.6),Math.round(y-size*1.6),Math.ceil(size*3.2),Math.ceil(size*3.2));
+    }
+  }
+  
+  /* A small number of free fragments complete the network→matter transition. */
+  if(state.mode!=='STABLE'){
+    for(let i=0;i<26;i++){
+      const a=(i*1.618)%6.283;
+      const r=base*(.34+.22*Math.sin(t*.8+i));
+      const cx=pixelW*.5+Math.cos(a+t*.08)*r;
+      const cy=pixelH*.5+Math.sin(a*1.31-t*.06)*r;
+      const s=1+(i%4);
+      pixelCtx.fillStyle=i%3===0?'rgba(140,124,255,.42)':'rgba(91,224,255,.38)';
+      pixelCtx.fillRect(Math.round(cx),Math.round(cy),s,s);
+    }
+  }
+  if(document.body.classList.contains('digital-dimension')){
+    stateValue.textContent=state.mode;
+  }
+  requestAnimationFrame(drawPixelField);
+}
+pixelSource.onload=()=>{
+  resizePixelCanvas();
+  buildPixelParticles();
+  requestAnimationFrame(drawPixelField);
+};
+pixelSource.src='ritual-001-matrix.svg?v=pixel-physicalization-01';
+window.addEventListener('resize',()=>{resizePixelCanvas();});
 
 const scene=document.querySelector('.scene');
 const rotValue=document.getElementById('rotValue'),vecValue=document.getElementById('vecValue'),stateValue=document.getElementById('stateValue');
