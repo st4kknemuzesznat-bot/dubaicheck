@@ -239,37 +239,14 @@ body.digital-dimension .tech-popup{
 }
 body.digital-dimension .tech-popup b{letter-spacing:.14em}
 
-/* FINAL DIGITAL ENTITY — use the transparent artwork directly.
-   The previous canvas sampler treated transparent SVG pixels as opaque on iOS,
-   producing the large color-changing rectangle. */
-body.digital-dimension .pixel-field{display:none!important}
-body.digital-dimension .artifact-stack .artifact-fallback{
+/* FINAL DIGITAL ENTITY — pixel field only.
+   Never show the SVG fallback in DIMENSION mode. On iOS Safari the SVG's
+   transparent area can be rasterized as opaque, which creates the square. */
+body.digital-dimension .artifact-fallback{display:none!important}
+body.digital-dimension .artifact-stack{background:transparent!important}
+body.digital-dimension .pixel-field{
   display:block!important;
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  image-rendering:auto;
-  opacity:.92;
-  mix-blend-mode:screen;
-  filter:grayscale(1) brightness(1.55) contrast(1.35)
-    sepia(1) saturate(4) hue-rotate(145deg)
-    drop-shadow(0 0 5px rgba(91,224,255,.42));
-  animation:digitalEntityGlitch 3.4s steps(1,end) infinite;
-}
-body.digital-dimension .artifact-stack .artifact-fallback{
-  clip-path:inset(0);
-}
-@keyframes digitalEntityGlitch{
-  0%,72%,100%{transform:translate(0,0);opacity:.92}
-  73%{transform:translate(-3px,0);opacity:.7}
-  74%{transform:translate(4px,1px);opacity:1}
-  75%{transform:translate(0,0);opacity:.92}
-  88%{transform:translate(0,0);opacity:.92}
-  89%{transform:translate(5px,0);opacity:.55}
-  90%{transform:translate(-4px,1px);opacity:.82}
-  91%{transform:translate(0,0);opacity:.92}
+  background:transparent!important;
 }
 </style>
 </head>
@@ -373,15 +350,22 @@ function buildPixelParticles(){
   o.clearRect(0,0,S,S);o.drawImage(pixelSource,0,0,S,S);
   const data=o.getImageData(0,0,S,S).data,pts=[];
   for(let y=0;y<S;y++)for(let x=0;x<S;x++){
-    const i=(y*S+x)*4,a=data[i+3];
+    const i=(y*S+x)*4,r=data[i],g=data[i+1],b=data[i+2],a=data[i+3];
     if(a<24)continue;
-    const b=(data[i]+data[i+1]+data[i+2])/3;
+
+    /* iOS can flatten SVG transparency to black. Treat near-black as
+       transparent so the whole source rectangle can never become particles.
+       Keep the actual pink artwork in its original RGB values. */
+    const isPink=(r>170 && r>g*1.15 && r>b*1.02);
+    const isPalePink=(r>220 && g>130 && b>135 && r>=g*1.18);
+    if(!isPink && !isPalePink)continue;
+
     pts.push({
       x:(x+.5)/S,y:(y+.5)/S,
       z:(Math.random()-.5)*2,
       size:.65+Math.random()*1.35,
-      alpha:.42+a/255*.56,
-      hue:b>215?'white':(data[i+1]>145?'cyan':'violet'),
+      alpha:.46+a/255*.54,
+      r,g,b,
       seed:Math.random()*1000,
       speed:.35+Math.random()*.9
     });
@@ -394,9 +378,7 @@ function buildPixelParticles(){
   pixelReady=true;
 }
 function rgbaFor(p,a){
-  if(p.hue==='violet')return'rgba(140,124,255,'+a.toFixed(3)+')';
-  if(p.hue==='cyan')return'rgba(91,224,255,'+a.toFixed(3)+')';
-  return'rgba(220,235,255,'+a.toFixed(3)+')';
+  return'rgba('+p.r+','+p.g+','+p.b+','+a.toFixed(3)+')';
 }
 function drawPixelField(now){
   if(!pixelReady||!pixelCanvas||!pixelCtx)return;
