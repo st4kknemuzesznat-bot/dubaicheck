@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap');
 :root{--bg:#f4f3ee;--ink:#080808;--pink:#ed2b79;--gray:#999}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink)}
-body{font-family:"IBM Plex Mono",monospace}
+body{font-family:"IBM Plex Mono",monospace;transition:background .35s,color .35s}.dimension-switch{position:absolute;z-index:20;right:32px;top:18px;border:1px solid #888;background:rgba(244,243,238,.72);padding:7px 10px;font-family:"IBM Plex Mono",monospace;font-size:7px;letter-spacing:.12em;cursor:pointer;backdrop-filter:blur(4px);transition:.25s}.dimension-switch:before{content:"◉";margin-right:6px}.dimension-switch:hover{background:#080808;color:#f4f3ee}
 button{font:inherit;color:inherit}
 .page{position:fixed;inset:0;background:var(--bg);display:none}.page.active{display:block}
 .noise{position:absolute;inset:0;pointer-events:none;opacity:.08;background-image:radial-gradient(#000 .45px,transparent .55px);background-size:4px 4px}.codefield{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;opacity:.105}.codecol{position:absolute;top:-22%;font-family:"IBM Plex Mono",monospace;font-size:6px;line-height:1.9;letter-spacing:.08em;white-space:pre;writing-mode:vertical-rl;animation:codeFall linear infinite}.codecol span{display:inline}.codecol .brandcode{font-size:5px;letter-spacing:.04em;font-weight:500}@keyframes codeFall{from{transform:translateY(-8%)}to{transform:translateY(125%)}}
@@ -42,12 +42,51 @@ button{font:inherit;color:inherit}
 @media(max-width:700px){.matrix-rain{opacity:.12}.matrix-column{font-size:8px}
 .header{left:18px;right:18px}.tagline{display:none}.shell{top:86px;left:10px;right:10px;bottom:10px}.nav{height:50px;padding:0 15px;gap:20px}.nav button{font-size:8px}.content{inset:50px 0 0}.ritual-title{left:15px;top:24px}.ritual-desc{left:15px;top:122px}.ritual-meta{right:15px;top:28px}.binary{right:15px;top:118px}.scene{width:105vw;height:105vw;top:54%}.telemetry{left:15px;bottom:38px}.coords{right:15px;bottom:38px}.coords{right:15px;bottom:38px}.footer{left:15px;right:15px}.about-copy{left:15px;top:28px;width:88%;font-size:9px}.about-copy h1{font-size:56px;margin-bottom:28px}.about-copy{padding-bottom:85px}.about-side{display:none}.shop-note{left:15px;bottom:42px}.landing-title{font-size:18vw}}
 @media(prefers-reduced-motion:reduce){.orbit,.entity{animation:none}}
+
+body.digital-dimension{--bg:#030505;--ink:#e8fff8;--pink:#36f0a5;background:#030505;color:#e8fff8}
+body.digital-dimension .page{background:#030505;color:#e8fff8}
+body.digital-dimension .noise{opacity:.18;background-image:radial-gradient(#55ffc2 .45px,transparent .6px)}
+body.digital-dimension .codefield{opacity:.22}
+body.digital-dimension .codecol{color:#35f5a8;text-shadow:0 0 7px rgba(53,245,168,.5)}
+body.digital-dimension .shell{border-color:#245b4b;box-shadow:inset 0 0 35px rgba(0,255,170,.035)}
+body.digital-dimension .nav{border-color:#245b4b}
+body.digital-dimension .nav button{color:#baffdf}
+body.digital-dimension .nav button.active:after{background:#36f0a5;box-shadow:0 0 8px #36f0a5}
+body.digital-dimension .brand{color:#f1fff9;text-shadow:2px 0 #ff2bd6,-2px 0 #24e7ff}
+body.digital-dimension .dimension-switch{right:32px;background:rgba(3,5,5,.82);border-color:#36f0a5;color:#36f0a5;box-shadow:0 0 14px rgba(54,240,165,.16);text-shadow:0 0 8px rgba(54,240,165,.6)}
+body.digital-dimension .dimension-switch:before{color:#ff2bd6}
+body.digital-dimension .title{color:#f5fffb;text-shadow:3px 0 #ff2bd6,-3px 0 #25e8ff}
+body.digital-dimension .ritual-desc,
+body.digital-dimension .ritual-meta,
+body.digital-dimension .telemetry,
+body.digital-dimension .coords,
+body.digital-dimension .footer,
+body.digital-dimension .about-copy,
+body.digital-dimension .about-side,
+body.digital-dimension .shop-note{color:#c8ffe8}
+body.digital-dimension .ritual-desc,
+body.digital-dimension .ritual-meta{ text-shadow:0 0 7px rgba(54,240,165,.28)}
+body.digital-dimension .orbit{border-color:rgba(54,240,165,.6);filter:drop-shadow(0 0 4px rgba(54,240,165,.25))}
+body.digital-dimension .orbit:before,body.digital-dimension .orbit:after{border-color:rgba(54,240,165,.3)}
+body.digital-dimension .entity img{filter:drop-shadow(0 0 12px rgba(54,240,165,.25)) contrast(1.08) saturate(1.15)}
+body.digital-dimension .entity:before,body.digital-dimension .entity:after{border-color:rgba(255,43,214,.34)}
+body.digital-dimension .matrix-column{color:#36f0a5;text-shadow:0 0 7px rgba(54,240,165,.45)}
+body.digital-dimension .matrix-column:nth-child(4n){color:#ff2bd6;opacity:.2}
+body.digital-dimension .scanline{background:rgba(54,240,165,.55);box-shadow:0 0 8px #36f0a5}
+body.digital-dimension .footer{border-color:#245b4b}
+body.digital-dimension .shop-center .closed{color:#f5fffb;text-shadow:4px 0 #ff2bd6,-4px 0 #25e8ff}
+body.digital-dimension .landing-title{text-shadow:4px 0 #ff2bd6,-4px 0 #25e8ff}
+body.digital-dimension .landing-enter{color:#36f0a5;text-shadow:0 0 9px rgba(54,240,165,.55)}
+body.digital-dimension .header:after{content:"01001110 01000101 01010111 00100000 01000100 01001001 01001101 01000101 01001110 01010011 01001001 01001111 01001110";position:absolute;right:0;top:48px;font-size:5px;line-height:1.5;letter-spacing:.18em;color:#36f0a5;opacity:.35;max-width:170px;word-break:break-all}
+body.digital-dimension .shell:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(rgba(54,240,165,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(54,240,165,.035) 1px,transparent 1px);background-size:22px 22px;mix-blend-mode:screen}
+body.digital-dimension .content:after{content:"SIGNAL / ACTIVE / DIMENSION_02";position:absolute;right:16px;bottom:15px;font-size:5px;letter-spacing:.16em;color:#36f0a5;opacity:.3;pointer-events:none}
+
 </style>
 </head>
 <body>
 <section id="landing" class="page active"><div class="noise"></div><div class="codefield" aria-hidden="true"></div><div class="landing-center"><div><div class="landing-title">RGZGOD.EXE</div><div class="landing-enter">ENTER THE VISION</div></div></div></section>
 
-<section id="site" class="page"><div class="noise"></div><div class="codefield" aria-hidden="true"></div>
+<section id="site" class="page"><div class="noise"></div><div class="codefield" aria-hidden="true"></div><button class="dimension-switch" id="dimensionSwitch" aria-label="Switch dimension">SWITCH DIMENSION</button>
 <header class="header"><div class="brand">RGZGOD.EXE<small>DIGITAL RITUALS<br>PHYSICAL OBJECTS</small></div><div class="tagline">SOMEWHERE BETWEEN LIGHT AND VISION,<br>SOMETHING BEGAN TO SEE.</div></header>
 <div class="shell"><nav class="nav"><div class="nav-brand">RGZGOD.EXE</div><button class="active" data-target="ritual">RITUAL 001</button><button data-target="about">ABOUT</button><button data-target="shop">SHOP</button></nav>
 <div class="content">
@@ -91,6 +130,12 @@ if(matrix){
   }
 }
 const landing=document.getElementById('landing'),site=document.getElementById('site');
+const dimensionSwitch=document.getElementById('dimensionSwitch');
+dimensionSwitch.addEventListener('click',e=>{
+ e.stopPropagation();
+ document.body.classList.toggle('digital-dimension');
+ dimensionSwitch.textContent=document.body.classList.contains('digital-dimension')?'RETURN TO ORIGINAL':'SWITCH DIMENSION';
+});
 let entering=false;
 landing.onclick=()=>{
  if(entering)return;
