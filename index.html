@@ -178,8 +178,9 @@ body.digital-dimension .pixel-field{
   position:absolute;inset:-4%;
   width:108%;height:108%;
   display:block;image-rendering:pixelated;
-  mix-blend-mode:screen;
+  mix-blend-mode:normal;
   opacity:1;
+  filter:none!important;
   z-index:4;
   pointer-events:none;
 }
@@ -378,7 +379,12 @@ function buildPixelParticles(){
   pixelReady=true;
 }
 function rgbaFor(p,a){
-  return'rgba('+p.r+','+p.g+','+p.b+','+a.toFixed(3)+')';
+  /* Preserve the original artwork palette exactly:
+     pale pink #fbc1c6 and hot pink #fb1261. */
+  const bright = p.r < 245 || p.g < 150 || p.b < 150;
+  return bright
+    ? 'rgba(251,18,97,'+a.toFixed(3)+')'
+    : 'rgba(251,193,198,'+a.toFixed(3)+')';
 }
 function drawPixelField(now){
   if(!pixelReady||!pixelCanvas||!pixelCtx)return;
