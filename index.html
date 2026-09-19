@@ -68,7 +68,20 @@ body.digital-dimension .ritual-desc,
 body.digital-dimension .ritual-meta{ text-shadow:0 0 7px rgba(54,240,165,.28)}
 body.digital-dimension .orbit{border-color:rgba(54,240,165,.6);filter:drop-shadow(0 0 4px rgba(54,240,165,.25))}
 body.digital-dimension .orbit:before,body.digital-dimension .orbit:after{border-color:rgba(54,240,165,.3)}
+body.digital-dimension .entity{filter:drop-shadow(0 0 7px rgba(54,240,165,.35));}
 body.digital-dimension .entity img{filter:drop-shadow(0 0 12px rgba(54,240,165,.25)) contrast(1.08) saturate(1.15)}
+body.digital-dimension .scene:before{content:"";position:absolute;inset:-12%;z-index:1;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(54,240,165,.10) 12px,transparent 13px),repeating-linear-gradient(0deg,transparent 0 17px,rgba(54,240,165,.055) 18px,transparent 19px);mask-image:radial-gradient(circle at center,black 0 38%,transparent 72%);animation:digitalGrid 7s linear infinite}
+body.digital-dimension .scene:after{content:"00110101 01010010 01000111 01011010 01000111 01001111 01000100 00101110 01000101 01011000 01000101";position:absolute;left:-8%;right:-8%;top:8%;height:84%;z-index:3;pointer-events:none;font:5px/2 "IBM Plex Mono",monospace;letter-spacing:.22em;word-break:break-all;overflow:hidden;color:#36f0a5;opacity:.17;text-shadow:0 0 5px #36f0a5;transform:skewY(-4deg);animation:digitalCode 9s linear infinite}
+@keyframes digitalGrid{from{transform:translateX(-22px) translateY(0)}to{transform:translateX(22px) translateY(19px)}}@keyframes digitalCode{0%{transform:translateY(-10%) skewY(-4deg);opacity:0}15%,80%{opacity:.17}100%{transform:translateY(10%) skewY(-4deg);opacity:0}}
+body.digital-dimension .entity:before{inset:-15%;border-color:rgba(54,240,165,.45);box-shadow:0 0 14px rgba(54,240,165,.18);animation:matrixRing 3.5s linear infinite}
+body.digital-dimension .entity:after{inset:-21%;border-color:rgba(255,43,214,.22);box-shadow:0 0 18px rgba(255,43,214,.12);animation:matrixRingReverse 5s linear infinite}
+@keyframes matrixRing{to{transform:rotateX(65deg) rotateZ(360deg)}}@keyframes matrixRingReverse{to{transform:rotateY(65deg) rotateZ(-360deg)}}
+body.digital-dimension .orbit{border-width:1px;box-shadow:0 0 5px rgba(54,240,165,.15)}
+body.digital-dimension .orbit:nth-child(2){border-color:rgba(255,43,214,.48)}
+body.digital-dimension .orbit:nth-child(3){border-color:rgba(37,232,255,.5)}
+body.digital-dimension .matrix-rain{opacity:.28;filter:drop-shadow(0 0 3px rgba(54,240,165,.3))}
+body.digital-dimension .matrix-column{font-size:9px;line-height:1.45;letter-spacing:.14em}
+body.digital-dimension .scene .entity img{mix-blend-mode:screen}
 body.digital-dimension .entity:before,body.digital-dimension .entity:after{border-color:rgba(255,43,214,.34)}
 body.digital-dimension .matrix-column{color:#36f0a5;text-shadow:0 0 7px rgba(54,240,165,.45)}
 body.digital-dimension .matrix-column:nth-child(4n){color:#ff2bd6;opacity:.2}
